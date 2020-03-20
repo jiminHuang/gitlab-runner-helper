@@ -11,7 +11,7 @@ RUN apt-get update -y && \
 RUN git lfs install --skip-repo
 
 COPY ./scripts/ /usr/bin
-COPY ./binaries/gitlab-runner-helper.x86_64 /usr/bin/gitlab-runner-helper
+COPY ./binaries/gitlab-runner-helper /usr/bin/gitlab-runner-helper
 
 RUN echo 'hosts: files dns' >> /etc/nsswitch.conf
 
