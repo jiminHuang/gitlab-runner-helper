@@ -3,8 +3,10 @@ FROM ubuntu
 # gitlab-runner-helper will try to resolve `sh` from the path. We ensure the PATH is populated by default, as some container runtimes do no longer set a default (e.g. containerd v1.2.8)
 ENV PATH="${PATH:-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin}"
 
-RUN apt-get install bash ca-certificates git git-lfs miniperl \
-	&& ln -s miniperl /usr/bin/perl
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y ca-certificates wget apt-transport-https vim git curl git-lfs perl && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN git lfs install --skip-repo
 
